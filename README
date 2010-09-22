@@ -1,0 +1,9 @@
+# eVias PHP library
+
+This PHP library takes care of declaring the base abstraction layer my web applications
+are build upon.
+
+Some of the classes are used by the eViasWeb project (github.com/evias/eViasWeb) and are
+developed in a way to improve the object relational mapping with my PHP classes.
+
+Any of you whose wish is to contribute can send me an email at <saive.gregory@gmail.com>
