@@ -47,28 +47,42 @@ class eVias_Code_Php
             // - declarations
             '/(?<!\w|\$|\%|\@|>)(
                 and|or|xor|for|do|while|foreach|as|return|die|exit|if|then|else|
-                elseif|new|delete|try|throw|catch|finally|class|function|string|
+                elseif|try|throw|catch|finally|function|string|
                 array|object|resource|var|bool|boolean|int|integer|float|double|
-                real|string|array|global|const|static|public|private|protected|
-                published|extends|switch|true|false|null|void|this|self|struct|
+                real|string|array|global|const|static|
+                published|switch|true|false|null|void|
                 char|signed|unsigned|short|long
             )(?!\w|=")/ix'
             => '<span class="keyword">$1</span>',
 
+            // Classes
+            '/(
+                class|this|parent|self|new|delete|extends|implements|
+                public|protected|private|struct
+            )(?!\w|=")/ix'
+            => '<span class="classes">$1</span>',
+
             // Language Addon
             // - functions, runtime constants..
-            '/(?<!\w|\$|\%|\@|>)(
+            '/(
                 __CLASS__|__DIR__|__FILE__|__LINE__|__FUNCTION__|__METHOD__|__NAMESPACE__|
-                die|include|require_once|echo|include_once|return|empty|isset|print|eval|
+                die|include|require_once|echo|include_once|return|print|eval|
                 require|var_dump|var_export
-            )(?!\w|=")/ix'
+            )/ix'
             => '<span class="library">$1</span>',
 
             // Language prototype (default overload)
             // - constructor, setters ..
-            '/(?<!\w|\$|\%|\@|>)(
-                __construct|__destruct|__call|__invoke|__set|__get|__isset
-            )(?!\w|=")/ix'
+            // - type functions
+            // - string functions
+            // - array_map
+            '/(
+                __construct|__destruct|__call|__invoke|__set|__get|__isset|
+                is_integer|is_numeric|is_bool|is_string|is_scalar|is_object|
+                unset|isset|empty|implode|explode|strpos|str_replace|substr|
+                strtr|strchr|in_array|is_null|count|array_map|array_keys|
+                array_values|array_diff|array_diff_keys|array_diff_values
+            )/ix'
             => '<span class="prototype">$1</span>',
 
             // PHP / Perl style variables: $var, %var, @var
