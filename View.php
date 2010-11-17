@@ -1,6 +1,6 @@
 <?php
 
-class eVias_View 
+class eVias_View
 	extends Zend_View
 {
 
@@ -22,10 +22,16 @@ class eVias_View
 		'logMessage'		=> 'Message [%message%] not translated for locale: %locale.',
 	);
 
+    public function __construct($config = array()) {
+        parent::__construct($config);
+
+        $this->init();
+    }
+
 	public function init() {
 		$this->setEncoding('UTF-8');
 
-		$this->addHelperPath(dirname(__FILE__) . '/View/Helper', 
+		$this->addHelperPath(dirname(__FILE__) . '/View/Helper',
 							 'eVias_View_Helper');
 
 		$this->_initTranslator();
